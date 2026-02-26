@@ -5,13 +5,488 @@ Author URI: https://vamtam.com
 Template: tecnologia
 */
 
+/* ============================================================
+   Q4 GEMS - Child Theme Styles
+   All custom overrides and enhancements go here.
+   These load after parent theme styles (vamtam-front-all).
+   ============================================================ */
 
+/* ----------------------------------------------------------
+   1. GLOBAL SMOOTHING & BASE IMPROVEMENTS
+   ---------------------------------------------------------- */
 
-/*
+html {
+	scroll-behavior: smooth;
+}
 
-put your child theme styles here
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
 
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
 
-you don't need any @import rules
+img {
+	max-width: 100%;
+	height: auto;
+}
 
-*/
+/* ----------------------------------------------------------
+   2. TYPOGRAPHY REFINEMENTS
+   ---------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1.2;
+	letter-spacing: -0.01em;
+}
+
+p {
+	line-height: 1.75;
+}
+
+a {
+	transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+a:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+/* ----------------------------------------------------------
+   3. BUTTON ENHANCEMENTS
+   ---------------------------------------------------------- */
+
+.elementor-button,
+.elementor-button-wrapper .elementor-button,
+a.elementor-button,
+button.elementor-button {
+	transition: background-color 0.25s ease,
+	            color 0.25s ease,
+	            border-color 0.25s ease,
+	            box-shadow 0.25s ease,
+	            transform 0.15s ease !important;
+	will-change: transform;
+}
+
+.elementor-button:hover,
+.elementor-button-wrapper .elementor-button:hover,
+a.elementor-button:hover,
+button.elementor-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.elementor-button:active,
+a.elementor-button:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ----------------------------------------------------------
+   4. FORM IMPROVEMENTS
+   ---------------------------------------------------------- */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+	outline: none;
+}
+
+/* WPForms & generic form styles */
+.wpforms-container input,
+.wpforms-container textarea,
+.wpforms-container select {
+	border-radius: 4px;
+}
+
+.wpforms-submit-container button[type="submit"] {
+	transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+}
+
+.wpforms-submit-container button[type="submit"]:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* ----------------------------------------------------------
+   5. IMAGE & MEDIA POLISH
+   ---------------------------------------------------------- */
+
+.elementor-image img,
+.elementor-image-box-img img {
+	transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.elementor-image a:hover img,
+.elementor-image-box a:hover .elementor-image-box-img img {
+	transform: scale(1.03);
+	opacity: 0.92;
+}
+
+figure {
+	overflow: hidden;
+}
+
+/* ----------------------------------------------------------
+   6. CARD / ICON BOX IMPROVEMENTS
+   ---------------------------------------------------------- */
+
+.elementor-icon-box-wrapper,
+.elementor-widget-icon-box .elementor-icon-box-wrapper {
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ----------------------------------------------------------
+   7. HEADER IMPROVEMENTS
+   ---------------------------------------------------------- */
+
+#main-header,
+.main-header {
+	transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Sticky header shadow on scroll (class toggled by theme JS) */
+.sticky-header-scrolled #main-header,
+.scrolled #main-header {
+	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ----------------------------------------------------------
+   8. NAVIGATION LINK TRANSITIONS
+   ---------------------------------------------------------- */
+
+.main-nav a,
+.vamtam-nav a,
+nav.elementor-nav-menu a {
+	transition: color 0.2s ease;
+}
+
+/* ----------------------------------------------------------
+   9. MOBILE / RESPONSIVE FIXES
+   Addresses Elementor sections with excessive spacing,
+   negative margins, oversized min-heights, and content
+   squeeze on mobile and tablet viewports.
+   ---------------------------------------------------------- */
+
+/* ---- TABLET (768px – 1024px) ---- */
+@media (max-width: 1024px) {
+
+	/* Cap excessive %-based section padding */
+	.elementor-section > .elementor-container > .elementor-column > .elementor-widget-wrap,
+	.elementor-section.elementor-section-boxed > .elementor-container {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+
+	/* Prevent columns with large % margins from collapsing content */
+	.elementor-column > .elementor-element-populated {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		--e-column-margin-left: 0px !important;
+		--e-column-margin-right: 0px !important;
+	}
+
+	/* Tame oversized spacers */
+	.elementor-widget-spacer {
+		max-height: 60px;
+	}
+}
+
+/* ---- MOBILE (below 768px) ---- */
+@media (max-width: 767px) {
+
+	/* Consistent container padding */
+	.elementor-section .elementor-container {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	/* Reset heavy section padding to sane mobile values */
+	.elementor-section {
+		padding-top: 40px !important;
+		padding-bottom: 40px !important;
+	}
+
+	/* Let the first hero section keep a bit more breathing room */
+	.elementor-section:first-child {
+		padding-top: 50px !important;
+		padding-bottom: 50px !important;
+	}
+
+	/* Kill negative margins that cause overlap / cutoff */
+	.elementor-element [style*="margin"][style*="-"] {
+		margin: 0 !important;
+	}
+
+	/* Cap section min-heights so they don't hog the viewport */
+	.elementor-section[data-settings] {
+		min-height: auto !important;
+	}
+
+	/* Remove large column margins set via inline styles */
+	.elementor-column > .elementor-element-populated {
+		margin: 0 !important;
+		--e-column-margin-left: 0px !important;
+		--e-column-margin-right: 0px !important;
+	}
+
+	/* Stack columns vertically with consistent gap */
+	.elementor-section .elementor-container {
+		flex-wrap: wrap;
+	}
+
+	.elementor-column {
+		width: 100% !important;
+	}
+
+	/* Reduce spacer heights */
+	.elementor-widget-spacer {
+		max-height: 30px;
+	}
+
+	/* Prevent images from overflowing */
+	.elementor-widget-image img,
+	.elementor-widget-image-box img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	/* Pull absolutely-positioned decorative elements out of the way */
+	.elementor-widget.elementor-absolute {
+		position: relative !important;
+		top: auto !important;
+		left: auto !important;
+		right: auto !important;
+		width: 100% !important;
+	}
+
+	/* Tighten icon-box / feature card spacing */
+	.elementor-icon-box-wrapper {
+		text-align: center;
+	}
+
+	/* Make headings scale down */
+	h1, .elementor-heading-title.elementor-size-xxl {
+		font-size: 1.75rem !important;
+	}
+
+	h2, .elementor-heading-title.elementor-size-xl {
+		font-size: 1.5rem !important;
+	}
+
+	h3, .elementor-heading-title.elementor-size-large {
+		font-size: 1.25rem !important;
+	}
+
+	/* Full-width buttons on mobile */
+	.elementor-button-wrapper {
+		text-align: center;
+	}
+
+	.elementor-button {
+		width: 100%;
+		max-width: 320px;
+	}
+
+	/* Disable hover lift on touch devices (no hover state) */
+	.elementor-button:hover,
+	a.elementor-button:hover {
+		transform: none;
+	}
+
+	/* Container max-widths → full width */
+	.elementor-section.elementor-section-boxed > .elementor-container {
+		max-width: 100% !important;
+	}
+
+	/* Testimonial / carousel slide padding */
+	.elementor-main-swiper {
+		width: 100% !important;
+	}
+}
+
+/* ----------------------------------------------------------
+   9a. EXPERTISE CAROUSEL — TARGETED MOBILE FIXES
+   Element: .elementor-element-7b50add2
+   Issues: 105% swiper width overflow, negative container margin,
+   arrow buttons at -50px outside bounds, oversized text.
+   ---------------------------------------------------------- */
+
+/* ---- TABLET ---- */
+@media (max-width: 1024px) {
+	/* Contain swiper within its column — prevent side overflow */
+	.elementor-element-7b50add2 .elementor-main-swiper,
+	.elementor-element-7b50add2.elementor-arrows-yes .elementor-main-swiper {
+		width: 100% !important;
+	}
+
+	/* Pull arrows inward so they don't escape the section */
+	.elementor-element-7b50add2 .elementor-swiper {
+		--vamtam-nav-btns-spacing: 0px !important;
+	}
+
+	.elementor-element-7b50add2 .elementor-swiper-button-prev {
+		left: 4px !important;
+	}
+
+	.elementor-element-7b50add2 .elementor-swiper-button-next {
+		right: 4px !important;
+	}
+}
+
+/* ---- MOBILE ---- */
+@media (max-width: 767px) {
+	/* Reset negative left margin on the widget container */
+	.elementor-element-7b50add2 > .elementor-widget-container {
+		margin: 0 !important;
+	}
+
+	/* Full-width swiper — no overflow */
+	.elementor-element-7b50add2 .elementor-main-swiper,
+	.elementor-element-7b50add2.elementor-arrows-yes .elementor-main-swiper {
+		width: 100% !important;
+	}
+
+	/* Shrink text to fit small screens */
+	.elementor-element-7b50add2 .elementor-testimonial__text {
+		font-size: 15px !important;
+		line-height: 1.6 !important;
+	}
+
+	/* Slide inner padding so content doesn't butt up to edge */
+	.elementor-element-7b50add2 .elementor-main-swiper .swiper-slide {
+		padding: 24px 16px !important;
+	}
+
+	/* Move nav arrows below the slide so they stay on-screen */
+	.elementor-element-7b50add2 .elementor-swiper-button {
+		top: auto !important;
+		bottom: -50px !important;
+		transform: none !important;
+	}
+
+	.elementor-element-7b50add2 .elementor-swiper-button-prev {
+		left: calc(50% - 56px) !important;
+		right: auto !important;
+	}
+
+	.elementor-element-7b50add2 .elementor-swiper-button-next {
+		right: calc(50% - 56px) !important;
+		left: auto !important;
+	}
+
+	/* Add bottom space so arrows don't overlap content below */
+	.elementor-element-7b50add2 .elementor-swiper {
+		padding-bottom: 60px !important;
+	}
+}
+
+/* ----------------------------------------------------------
+   10. ACCESSIBILITY IMPROVEMENTS
+   ---------------------------------------------------------- */
+
+/* Skip to content link */
+.skip-link {
+	position: absolute;
+	top: -100%;
+	left: 6px;
+	z-index: 100000;
+	padding: 8px 16px;
+	background: #000;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	border-radius: 0 0 4px 4px;
+	text-decoration: none;
+	transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+	top: 0;
+}
+
+/* Ensure focus states are visible for keyboard users */
+:focus-visible {
+	outline: 2px dashed currentColor;
+	outline-offset: 3px;
+}
+
+/* ----------------------------------------------------------
+   11. BACK-TO-TOP / SCROLL SMOOTHNESS
+   ---------------------------------------------------------- */
+
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html,
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* ----------------------------------------------------------
+   12. PRINT STYLES
+   ---------------------------------------------------------- */
+
+@media print {
+	.main-header,
+	.main-footer,
+	.elementor-sticky,
+	nav {
+		display: none !important;
+	}
+
+	body {
+		font-size: 12pt;
+		color: #000;
+		background: #fff;
+	}
+
+	a[href]::after {
+		content: " (" attr(href) ")";
+		font-size: 0.85em;
+		color: #555;
+	}
+
+	a[href^="#"]::after,
+	a[href^="javascript"]::after {
+		content: "";
+	}
+}

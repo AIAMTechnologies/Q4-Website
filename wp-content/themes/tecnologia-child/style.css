@@ -5,13 +5,162 @@ Author URI: https://vamtam.com
 Template: tecnologia
 */
 
-
-
 /*
-
-put your child theme styles here
-
-
-you don't need any @import rules
-
+SMB-focused visual refinements
+- Trust-forward color system
+- Better readability and visual hierarchy
+- Consistent CTAs and card treatments
+- Mobile-safe spacing and typography
 */
+
+:root {
+	--smb-primary: #1f6fff;
+	--smb-primary-dark: #114ec0;
+	--smb-accent: #19b394;
+	--smb-ink: #142033;
+	--smb-muted: #5c687d;
+	--smb-surface: #f6f9ff;
+	--smb-border: #dbe6ff;
+	--smb-radius: 14px;
+	--smb-shadow: 0 12px 32px rgba(17, 46, 102, 0.12);
+}
+
+body {
+	color: var(--smb-ink);
+	line-height: 1.65;
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #101a2b;
+	line-height: 1.2;
+	letter-spacing: -0.01em;
+}
+
+p,
+li {
+	color: var(--smb-muted);
+}
+
+/* Stronger trust and conversion CTA styling */
+.elementor-button,
+button,
+input[type='submit'] {
+	border-radius: 999px;
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.elementor-button:hover,
+button:hover,
+input[type='submit']:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 10px 24px rgba(17, 78, 192, 0.25);
+}
+
+/* Global section rhythm for cleaner scanning */
+.elementor-section {
+	--smb-section-gap: clamp(48px, 7vw, 96px);
+}
+
+.elementor-section.elementor-top-section {
+	padding-top: min(4vw, 32px);
+	padding-bottom: min(4vw, 32px);
+}
+
+/* Card treatment for service/feature blocks */
+.elementor-widget-icon-box .elementor-widget-container,
+.elementor-widget-image-box .elementor-widget-container,
+.elementor-widget-testimonial .elementor-widget-container,
+.elementor-widget-price-table .elementor-widget-container {
+	background: #fff;
+	border: 1px solid var(--smb-border);
+	border-radius: var(--smb-radius);
+	box-shadow: 0 4px 16px rgba(15, 35, 80, 0.06);
+	padding: clamp(16px, 2vw, 24px);
+}
+
+.elementor-widget-icon-box .elementor-widget-container:hover,
+.elementor-widget-image-box .elementor-widget-container:hover,
+.elementor-widget-testimonial .elementor-widget-container:hover,
+.elementor-widget-price-table .elementor-widget-container:hover {
+	box-shadow: var(--smb-shadow);
+	border-color: #c9d9ff;
+}
+
+/* Forms: reduce friction and improve clarity */
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='search'],
+input[type='url'],
+textarea,
+select {
+	border-radius: 12px;
+	border: 1px solid #cfdcfb;
+	background: #fff;
+	padding: 0.75rem 0.9rem;
+	color: var(--smb-ink);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+	border-color: var(--smb-primary);
+	box-shadow: 0 0 0 3px rgba(31, 111, 255, 0.16);
+}
+
+/* Trust signals + subtle urgency strip styling */
+.smb-trust-strip,
+.elementor-widget-counter .elementor-widget-container {
+	background: linear-gradient(135deg, #f7fbff 0%, #eef5ff 100%);
+	border: 1px solid var(--smb-border);
+	border-radius: var(--smb-radius);
+	padding: clamp(12px, 2vw, 18px);
+}
+
+/* Better link discoverability */
+a {
+	text-underline-offset: 0.16em;
+}
+
+a:hover {
+	color: var(--smb-primary-dark);
+}
+
+/* Mobile-safe refinements */
+@media (max-width: 767px) {
+	body {
+		font-size: 16px;
+	}
+
+	h1 {
+		font-size: clamp(1.8rem, 7vw, 2.4rem);
+	}
+
+	h2 {
+		font-size: clamp(1.45rem, 6vw, 1.9rem);
+	}
+
+	.elementor-button,
+	button,
+	input[type='submit'] {
+		width: 100%;
+		justify-content: center;
+		min-height: 46px;
+	}
+
+	.elementor-widget-icon-box .elementor-widget-container,
+	.elementor-widget-image-box .elementor-widget-container,
+	.elementor-widget-testimonial .elementor-widget-container,
+	.elementor-widget-price-table .elementor-widget-container {
+		padding: 16px;
+	}
+}

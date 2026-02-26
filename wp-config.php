@@ -100,8 +100,8 @@ define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
-/** Prevent file editing from the WordPress admin dashboard */
-define( 'DISALLOW_FILE_EDIT', true );
+/** Allow editing theme/plugin files from the WordPress admin dashboard */
+define( 'DISALLOW_FILE_EDIT', false );
 
 /** Prevent plugin/theme installation and updates from the dashboard (optional - remove if you need to install plugins via admin) */
 define( 'DISALLOW_FILE_MODS', false );

@@ -332,6 +332,82 @@ nav.elementor-nav-menu a {
 }
 
 /* ----------------------------------------------------------
+   9a. EXPERTISE CAROUSEL — TARGETED MOBILE FIXES
+   Element: .elementor-element-7b50add2
+   Issues: 105% swiper width overflow, negative container margin,
+   arrow buttons at -50px outside bounds, oversized text.
+   ---------------------------------------------------------- */
+
+/* ---- TABLET ---- */
+@media (max-width: 1024px) {
+	/* Contain swiper within its column — prevent side overflow */
+	.elementor-element-7b50add2 .elementor-main-swiper,
+	.elementor-element-7b50add2.elementor-arrows-yes .elementor-main-swiper {
+		width: 100% !important;
+	}
+
+	/* Pull arrows inward so they don't escape the section */
+	.elementor-element-7b50add2 .elementor-swiper {
+		--vamtam-nav-btns-spacing: 0px !important;
+	}
+
+	.elementor-element-7b50add2 .elementor-swiper-button-prev {
+		left: 4px !important;
+	}
+
+	.elementor-element-7b50add2 .elementor-swiper-button-next {
+		right: 4px !important;
+	}
+}
+
+/* ---- MOBILE ---- */
+@media (max-width: 767px) {
+	/* Reset negative left margin on the widget container */
+	.elementor-element-7b50add2 > .elementor-widget-container {
+		margin: 0 !important;
+	}
+
+	/* Full-width swiper — no overflow */
+	.elementor-element-7b50add2 .elementor-main-swiper,
+	.elementor-element-7b50add2.elementor-arrows-yes .elementor-main-swiper {
+		width: 100% !important;
+	}
+
+	/* Shrink text to fit small screens */
+	.elementor-element-7b50add2 .elementor-testimonial__text {
+		font-size: 15px !important;
+		line-height: 1.6 !important;
+	}
+
+	/* Slide inner padding so content doesn't butt up to edge */
+	.elementor-element-7b50add2 .elementor-main-swiper .swiper-slide {
+		padding: 24px 16px !important;
+	}
+
+	/* Move nav arrows below the slide so they stay on-screen */
+	.elementor-element-7b50add2 .elementor-swiper-button {
+		top: auto !important;
+		bottom: -50px !important;
+		transform: none !important;
+	}
+
+	.elementor-element-7b50add2 .elementor-swiper-button-prev {
+		left: calc(50% - 56px) !important;
+		right: auto !important;
+	}
+
+	.elementor-element-7b50add2 .elementor-swiper-button-next {
+		right: calc(50% - 56px) !important;
+		left: auto !important;
+	}
+
+	/* Add bottom space so arrows don't overlap content below */
+	.elementor-element-7b50add2 .elementor-swiper {
+		padding-bottom: 60px !important;
+	}
+}
+
+/* ----------------------------------------------------------
    10. ACCESSIBILITY IMPROVEMENTS
    ---------------------------------------------------------- */
 

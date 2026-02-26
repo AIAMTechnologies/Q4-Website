@@ -164,3 +164,16 @@ a:hover {
 		padding: 16px;
 	}
 }
+
+/* Remove Google reviews widgets from rendering layer if injected in page content. */
+.ti-widget,
+.trustindex-widget,
+.trustindex-google-widget,
+.google-reviews,
+.google-review-widget,
+.wp-google-review-slider,
+[id*='trustindex'],
+[class*='trustindex'],
+[class*='google-review'] {
+	display: none !important;
+}

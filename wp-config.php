@@ -101,6 +101,32 @@ define( 'WP_DEBUG', false );
 /* Add any custom values between this line and the "stop editing" line. */
 
 
+
+/**
+ * Security and maintenance hardening.
+ */
+if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
+	define( 'DISALLOW_FILE_EDIT', true );
+}
+if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) ) {
+	define( 'AUTOMATIC_UPDATER_DISABLED', false );
+}
+if ( ! defined( 'WP_AUTO_UPDATE_CORE' ) ) {
+	define( 'WP_AUTO_UPDATE_CORE', 'minor' );
+}
+if ( ! defined( 'AUTO_UPDATE_PLUGIN' ) ) {
+	define( 'AUTO_UPDATE_PLUGIN', true );
+}
+if ( ! defined( 'AUTO_UPDATE_THEME' ) ) {
+	define( 'AUTO_UPDATE_THEME', true );
+}
+if ( ! defined( 'FORCE_SSL_ADMIN' ) ) {
+	define( 'FORCE_SSL_ADMIN', true );
+}
+if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === $_SERVER['HTTP_X_FORWARDED_PROTO'] ) {
+	$_SERVER['HTTPS'] = 'on';
+}
+
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */

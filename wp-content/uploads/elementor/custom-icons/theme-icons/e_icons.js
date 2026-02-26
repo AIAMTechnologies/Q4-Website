@@ -1,0 +1,1 @@
+{"icons":["Telemedicine","Fintech","Consulting1","Software-Development","NFT","Automation","Efficiency","Transactions","Target","Respectful","Ownership","Unified","people","Process","Purpose","Web-development","Security","Mobile-development","Managed","Consulting","Cloud","arrow-up-right","arrow-il","minus","plus","check-box","check-il","star"]}

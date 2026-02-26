@@ -1,0 +1,10 @@
+.DS_Store
+*.log
+.env
+.env.*
+*.wpress
+*.zip
+OldWebsite/
+Oldwebsite2/
+wp-content/wflogs/
+wp-content/cache/

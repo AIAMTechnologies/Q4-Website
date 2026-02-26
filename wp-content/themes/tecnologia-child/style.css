@@ -188,14 +188,146 @@ nav.elementor-nav-menu a {
 }
 
 /* ----------------------------------------------------------
-   9. ELEMENTOR SECTION SPACING CONSISTENCY
+   9. MOBILE / RESPONSIVE FIXES
+   Addresses Elementor sections with excessive spacing,
+   negative margins, oversized min-heights, and content
+   squeeze on mobile and tablet viewports.
    ---------------------------------------------------------- */
 
-/* Improve inner section padding uniformity on mobile */
+/* ---- TABLET (768px – 1024px) ---- */
+@media (max-width: 1024px) {
+
+	/* Cap excessive %-based section padding */
+	.elementor-section > .elementor-container > .elementor-column > .elementor-widget-wrap,
+	.elementor-section.elementor-section-boxed > .elementor-container {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+
+	/* Prevent columns with large % margins from collapsing content */
+	.elementor-column > .elementor-element-populated {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		--e-column-margin-left: 0px !important;
+		--e-column-margin-right: 0px !important;
+	}
+
+	/* Tame oversized spacers */
+	.elementor-widget-spacer {
+		max-height: 60px;
+	}
+}
+
+/* ---- MOBILE (below 768px) ---- */
 @media (max-width: 767px) {
+
+	/* Consistent container padding */
 	.elementor-section .elementor-container {
 		padding-left: 20px;
 		padding-right: 20px;
+	}
+
+	/* Reset heavy section padding to sane mobile values */
+	.elementor-section {
+		padding-top: 40px !important;
+		padding-bottom: 40px !important;
+	}
+
+	/* Let the first hero section keep a bit more breathing room */
+	.elementor-section:first-child {
+		padding-top: 50px !important;
+		padding-bottom: 50px !important;
+	}
+
+	/* Kill negative margins that cause overlap / cutoff */
+	.elementor-element [style*="margin"][style*="-"] {
+		margin: 0 !important;
+	}
+
+	/* Cap section min-heights so they don't hog the viewport */
+	.elementor-section[data-settings] {
+		min-height: auto !important;
+	}
+
+	/* Remove large column margins set via inline styles */
+	.elementor-column > .elementor-element-populated {
+		margin: 0 !important;
+		--e-column-margin-left: 0px !important;
+		--e-column-margin-right: 0px !important;
+	}
+
+	/* Stack columns vertically with consistent gap */
+	.elementor-section .elementor-container {
+		flex-wrap: wrap;
+	}
+
+	.elementor-column {
+		width: 100% !important;
+	}
+
+	/* Reduce spacer heights */
+	.elementor-widget-spacer {
+		max-height: 30px;
+	}
+
+	/* Prevent images from overflowing */
+	.elementor-widget-image img,
+	.elementor-widget-image-box img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	/* Pull absolutely-positioned decorative elements out of the way */
+	.elementor-widget.elementor-absolute {
+		position: relative !important;
+		top: auto !important;
+		left: auto !important;
+		right: auto !important;
+		width: 100% !important;
+	}
+
+	/* Tighten icon-box / feature card spacing */
+	.elementor-icon-box-wrapper {
+		text-align: center;
+	}
+
+	/* Make headings scale down */
+	h1, .elementor-heading-title.elementor-size-xxl {
+		font-size: 1.75rem !important;
+	}
+
+	h2, .elementor-heading-title.elementor-size-xl {
+		font-size: 1.5rem !important;
+	}
+
+	h3, .elementor-heading-title.elementor-size-large {
+		font-size: 1.25rem !important;
+	}
+
+	/* Full-width buttons on mobile */
+	.elementor-button-wrapper {
+		text-align: center;
+	}
+
+	.elementor-button {
+		width: 100%;
+		max-width: 320px;
+	}
+
+	/* Disable hover lift on touch devices (no hover state) */
+	.elementor-button:hover,
+	a.elementor-button:hover {
+		transform: none;
+	}
+
+	/* Container max-widths → full width */
+	.elementor-section.elementor-section-boxed > .elementor-container {
+		max-width: 100% !important;
+	}
+
+	/* Testimonial / carousel slide padding */
+	.elementor-main-swiper {
+		width: 100% !important;
 	}
 }
 

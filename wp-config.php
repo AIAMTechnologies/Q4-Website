@@ -100,6 +100,24 @@ define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
+/** Prevent file editing from the WordPress admin dashboard */
+define( 'DISALLOW_FILE_EDIT', true );
+
+/** Prevent plugin/theme installation and updates from the dashboard (optional - remove if you need to install plugins via admin) */
+define( 'DISALLOW_FILE_MODS', false );
+
+/** Force SSL for admin and login */
+define( 'FORCE_SSL_ADMIN', true );
+
+/** Limit post revisions to reduce DB bloat */
+define( 'WP_POST_REVISIONS', 5 );
+
+/** Disable error display on front-end */
+define( 'WP_DEBUG_DISPLAY', false );
+@ini_set( 'display_errors', 0 );
+
+/** Limit auto-save interval (seconds) */
+define( 'AUTOSAVE_INTERVAL', 120 );
 
 /* That's all, stop editing! Happy publishing. */
 

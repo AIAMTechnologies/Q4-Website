@@ -6,44 +6,6 @@ Template: tecnologia
 */
 
 /* ============================================================
-   Google Reviews block — hidden via CSS as a belt-and-suspenders
-   complement to the PHP shortcode/script suppression in functions.php.
-   Targets all common embed providers (Elfsight, Tagembed, Trustindex,
-   GRW, and the native Elementor testimonials widget when it is used
-   exclusively for Google Reviews).
-   ---------------------------------------------------------- */
-
-/* Elfsight Google Reviews widget */
-[class*="elfsight-app-"] {
-	display: none !important;
-}
-
-/* Tagembed */
-[class*="tagembed-widget"],
-[id*="tagembed-widget"] {
-	display: none !important;
-}
-
-/* Trustindex */
-.ti-widget,
-.ti-widget-container,
-[class*="trustindex"] {
-	display: none !important;
-}
-
-/* Google Review Widget (GRW) */
-.grw-widget,
-[class*="grw-"] {
-	display: none !important;
-}
-
-/* Generic Google Reviews iframes */
-iframe[src*="google.com/maps/embed"][src*="review"],
-iframe[src*="googleapis.com"][src*="review"] {
-	display: none !important;
-}
-
-/* ============================================================
    Q4 GEMS - Child Theme Styles
    All custom overrides and enhancements go here.
    These load after parent theme styles (vamtam-front-all).

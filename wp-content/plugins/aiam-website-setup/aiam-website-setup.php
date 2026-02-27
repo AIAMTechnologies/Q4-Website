@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: AIAM Website Setup
- * Plugin URI:  https://aiamtechnologies.com
- * Description: Automatically creates the AIAM Technologies website pages (Home, Services, Pricing, About) with custom page templates. Run once on activation, or use WP-CLI / the admin action to re-run.
- * Version:     1.0.0
- * Author:      AIAM Technologies
+ * Plugin Name: Q4 Gems Website Setup
+ * Plugin URI:  https://q4gems.com
+ * Description: Automatically creates the Q4 Gems website pages (Home, Services, Pricing, About) with custom page templates. Run once on activation, or use WP-CLI / the admin action to re-run.
+ * Version:     1.1.0
+ * Author:      Q4 GLOBAL Enterprise Managed Solutions Inc.
  * License:     GPL-2.0-or-later
  */
 
@@ -25,7 +25,7 @@ function aiam_get_page_definitions() {
             'set_front' => true,
         ],
         'services' => [
-            'title'    => 'Platform & Services',
+            'title'    => 'Services',
             'slug'     => 'services',
             'template' => 'page-aiam-services.php',
         ],
@@ -107,7 +107,7 @@ function aiam_create_pages() {
 // ============================================================
 
 function aiam_create_navigation_menu() {
-    $menu_name     = 'AIAM Primary Menu';
+    $menu_name     = 'Q4 Gems Primary Menu';
     $menu_location = 'aiam-primary';
 
     // Delete old menu if exists
@@ -123,8 +123,7 @@ function aiam_create_navigation_menu() {
     }
 
     $menu_items = [
-        ['Services', 'services'],
-        ['Platform',  'services'],
+        ['Services',  'services'],
         ['Pricing',   'pricing'],
         ['About',     'about'],
     ];
@@ -173,7 +172,7 @@ function aiam_configure_site_options() {
 
     // Site tagline
     if ( get_option('blogdescription') === 'Just another WordPress site' || empty( get_option('blogdescription') ) ) {
-        update_option( 'blogdescription', 'Enterprise Cybersecurity & IT Management' );
+        update_option( 'blogdescription', 'Enterprise IT Solutions — Toronto\'s Trusted Technology Partner Since 1999' );
     }
 
     // Permalink structure
@@ -247,8 +246,8 @@ register_activation_hook( __FILE__, function () {
 
 add_action( 'admin_menu', function () {
     add_management_page(
-        'AIAM Website Setup',
-        'AIAM Setup',
+        'Q4 Gems Website Setup',
+        'Q4 Gems Setup',
         'manage_options',
         'aiam-setup',
         'aiam_admin_setup_page'
@@ -281,7 +280,7 @@ function aiam_admin_setup_page() {
     $pages = aiam_get_page_definitions();
     ?>
     <div class="wrap">
-        <h1>AIAM Website Setup</h1>
+        <h1>Q4 Gems Website Setup</h1>
         <?php echo $message; ?>
 
         <div style="background:#fff;padding:2rem;max-width:700px;border-radius:4px;border:1px solid #ccc;margin-top:1rem">
@@ -314,7 +313,7 @@ function aiam_admin_setup_page() {
                 <?php wp_nonce_field( 'aiam_setup_action' ); ?>
                 <p>
                     <button type="submit" name="aiam_run_setup" class="button button-primary button-large">
-                        🚀 Run AIAM Setup / Refresh Pages
+                        🚀 Run Q4 Gems Setup / Refresh Pages
                     </button>
                 </p>
                 <p style="color:#666;font-size:13px">
@@ -385,5 +384,5 @@ add_action( 'wp_head', function () {
     }
     // Preload Google Fonts stylesheet
     echo '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">' . "\n";
-    echo '<link rel="preload" as="image" href="' . esc_url( content_url( 'uploads/2023/03/Logo-white.svg' ) ) . '">' . "\n";
+    echo '<link rel="preload" as="image" href="' . esc_url( content_url( 'uploads/2023/03/q4g-white.png' ) ) . '">' . "\n";
 }, 2 );

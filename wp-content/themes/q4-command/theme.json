@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        { "slug": "ink", "color": "#071629", "name": "Ink" },
+        { "slug": "panel", "color": "#0c1731", "name": "Panel" },
+        { "slug": "cream", "color": "#f3efe8", "name": "Cream" },
+        { "slug": "white", "color": "#ffffff", "name": "White" },
+        { "slug": "mist", "color": "#d9f4ff", "name": "Mist" },
+        { "slug": "signal", "color": "#b6ff4d", "name": "Signal" },
+        { "slug": "cobalt", "color": "#0f6dff", "name": "Cobalt" }
+      ]
+    },
+    "layout": {
+      "contentSize": "720px",
+      "wideSize": "1200px"
+    },
+    "spacing": {
+      "units": ["px", "rem", "vw", "%"]
+    },
+    "typography": {
+      "defaultFontSizes": false,
+      "fluid": true,
+      "fontSizes": [
+        { "slug": "sm", "size": "0.95rem", "name": "Small" },
+        { "slug": "md", "size": "1.125rem", "name": "Medium" },
+        { "slug": "lg", "size": "1.4rem", "name": "Large" },
+        { "slug": "xl", "size": "clamp(2.8rem, 6vw, 5.6rem)", "name": "XL" }
+      ]
+    }
+  }
+}

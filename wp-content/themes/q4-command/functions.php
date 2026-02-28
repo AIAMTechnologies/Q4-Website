@@ -75,20 +75,134 @@ function q4_command_brand_markup() {
     );
 }
 
-function q4_command_navigation_fallback() {
-    $items = array(
-        __( 'Home', 'q4-command' )     => home_url( '/' ),
-        __( 'Services', 'q4-command' ) => home_url( '/services/' ),
-        __( 'About', 'q4-command' )    => home_url( '/about-us/' ),
-        __( 'Insights', 'q4-command' ) => home_url( '/blog/' ),
-        __( 'Contact', 'q4-command' )  => home_url( '/contact-us/' ),
+function q4_command_build_nav_link( $label, $url, $is_current = false ) {
+    return array(
+        'label'      => $label,
+        'url'        => $url,
+        'is_current' => (bool) $is_current,
     );
+}
 
-    echo '<ul class="menu-list">';
-    foreach ( $items as $label => $url ) {
-        printf( '<li><a href="%1$s">%2$s</a></li>', esc_url( $url ), esc_html( $label ) );
+function q4_command_utility_nav_targets() {
+    return array( 'blog', 'careers', 'faq', 'managed-services', 'privacy-policy' );
+}
+
+function q4_command_is_utility_nav_item( $item ) {
+    $targets = q4_command_utility_nav_targets();
+    $title   = is_array( $item ) ? $item['label'] : $item->title;
+    $url     = is_array( $item ) ? $item['url'] : $item->url;
+
+    if ( in_array( sanitize_title( wp_strip_all_tags( $title ) ), $targets, true ) ) {
+        return true;
     }
+
+    $path = trim( (string) wp_parse_url( $url, PHP_URL_PATH ), '/' );
+    if ( '' === $path ) {
+        return false;
+    }
+
+    foreach ( $targets as $target ) {
+        if ( $path === $target ) {
+            return true;
+        }
+
+        $suffix = '/' . $target;
+        if ( strlen( $path ) > strlen( $target ) && substr( $path, -strlen( $suffix ) ) === $suffix ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function q4_command_default_navigation_groups() {
+    $privacy_url = function_exists( 'get_privacy_policy_url' ) ? get_privacy_policy_url() : home_url( '/privacy-policy/' );
+
+    return array(
+        'primary' => array(
+            q4_command_build_nav_link( __( 'Home', 'q4-command' ), home_url( '/' ) ),
+            q4_command_build_nav_link( __( 'Services', 'q4-command' ), home_url( '/services/' ) ),
+            q4_command_build_nav_link( __( 'About', 'q4-command' ), home_url( '/about-us/' ) ),
+            q4_command_build_nav_link( __( 'Contact', 'q4-command' ), home_url( '/contact-us/' ) ),
+        ),
+        'utility' => array(
+            q4_command_build_nav_link( __( 'Blog', 'q4-command' ), home_url( '/blog/' ) ),
+            q4_command_build_nav_link( __( 'Careers', 'q4-command' ), home_url( '/careers/' ) ),
+            q4_command_build_nav_link( __( 'FAQ', 'q4-command' ), home_url( '/faq/' ) ),
+            q4_command_build_nav_link( __( 'Managed Services', 'q4-command' ), home_url( '/managed-services/' ) ),
+            q4_command_build_nav_link( __( 'Privacy Policy', 'q4-command' ), $privacy_url ),
+        ),
+    );
+}
+
+function q4_command_get_navigation_groups() {
+    $groups    = array(
+        'primary' => array(),
+        'utility' => array(),
+    );
+    $defaults  = q4_command_default_navigation_groups();
+    $locations = get_nav_menu_locations();
+
+    if ( ! empty( $locations['primary'] ) ) {
+        $items = wp_get_nav_menu_items( $locations['primary'] );
+
+        if ( ! empty( $items ) ) {
+            foreach ( $items as $item ) {
+                if ( (int) $item->menu_item_parent !== 0 ) {
+                    continue;
+                }
+
+                $link = q4_command_build_nav_link(
+                    $item->title,
+                    $item->url,
+                    ! empty( $item->current ) || ! empty( $item->current_item_ancestor ) || ! empty( $item->current_item_parent )
+                );
+
+                if ( q4_command_is_utility_nav_item( $item ) ) {
+                    $groups['utility'][] = $link;
+                    continue;
+                }
+
+                $groups['primary'][] = $link;
+            }
+        }
+    }
+
+    if ( empty( $groups['primary'] ) ) {
+        $groups['primary'] = $defaults['primary'];
+    }
+
+    if ( empty( $groups['utility'] ) ) {
+        $groups['utility'] = $defaults['utility'];
+    }
+
+    return $groups;
+}
+
+function q4_command_render_navigation_links( $items, $list_class = 'menu-list' ) {
+    if ( empty( $items ) || ! is_array( $items ) ) {
+        return;
+    }
+
+    printf( '<ul class="%s">', esc_attr( $list_class ) );
+
+    foreach ( $items as $item ) {
+        $classes = ! empty( $item['is_current'] ) ? ' class="current-menu-item"' : '';
+
+        printf(
+            '<li%1$s><a href="%2$s">%3$s</a></li>',
+            $classes,
+            esc_url( $item['url'] ),
+            esc_html( $item['label'] )
+        );
+    }
+
     echo '</ul>';
+}
+
+function q4_command_navigation_fallback() {
+    $groups = q4_command_default_navigation_groups();
+    q4_command_render_navigation_links( $groups['primary'] );
 }
 
 function q4_command_clean_legacy_markup( $content ) {

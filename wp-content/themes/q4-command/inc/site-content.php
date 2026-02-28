@@ -227,8 +227,8 @@ function q4_command_home_content() {
 function q4_command_page_library() {
     return array(
         'about' => array(
-            'aliases' => array( 'about-us', 'about', 'company', 'why-q4-gems' ),
-            'keywords' => array( 'about', 'company' ),
+            'aliases' => array( 'about-us', 'about', 'company', 'why-q4-gems', 'leadership', 'our-clientele', 'business-outcomes', 'partnerships' ),
+            'keywords' => array( 'about', 'company', 'leadership', 'clientele', 'business outcomes', 'partnership' ),
             'eyebrow' => __( 'About Q4 GEMS', 'q4-command' ),
             'title' => __( 'A practical IT partner built around responsiveness, security, and business fit.', 'q4-command' ),
             'intro' => __( 'Q4 GEMS supports organizations that need tailored IT support, stronger cybersecurity, and technology decisions that make sense operationally and commercially.', 'q4-command' ),
@@ -240,8 +240,8 @@ function q4_command_page_library() {
             ),
         ),
         'services' => array(
-            'aliases' => array( 'services', 'solutions' ),
-            'keywords' => array( 'services', 'solutions' ),
+            'aliases' => array( 'services', 'solutions', 'it-services', 'it-services-2', 'enterprise', 'small-and-medium-business' ),
+            'keywords' => array( 'services', 'solutions', 'it services', 'enterprise', 'small and medium business' ),
             'eyebrow' => __( 'Services', 'q4-command' ),
             'title' => __( 'Managed IT, security, cloud, and advisory services designed to move the business forward.', 'q4-command' ),
             'intro' => __( 'Explore managed IT services, cybersecurity, Microsoft 365 support, business continuity, procurement, and project delivery built to reduce risk and support growth.', 'q4-command' ),
@@ -254,8 +254,8 @@ function q4_command_page_library() {
             'intro' => __( 'Use the form below to ask about managed IT services, cybersecurity, Microsoft 365, continuity planning, procurement, or an upcoming project.', 'q4-command' ),
         ),
         'managed-it' => array(
-            'aliases' => array( 'managed-it-services', 'managed-it-service', 'it-support', 'service-desk' ),
-            'keywords' => array( 'managed it', 'service desk', 'it support' ),
+            'aliases' => array( 'managed-it-services', 'managed-it-service', 'managed-services', 'it-support', 'service-desk', 'client-support', 'remote-monitoring-and-management' ),
+            'keywords' => array( 'managed it', 'managed services', 'service desk', 'it support', 'remote monitoring' ),
             'eyebrow' => __( 'Managed IT Services', 'q4-command' ),
             'title' => __( 'Managed IT services that reduce downtime, improve support quality, and keep work moving.', 'q4-command' ),
             'intro' => __( 'Q4 GEMS helps organizations reduce downtime with responsive support, proactive maintenance, device management, and clear operational ownership.', 'q4-command' ),
@@ -267,8 +267,8 @@ function q4_command_page_library() {
             ),
         ),
         'security' => array(
-            'aliases' => array( 'cyber-security', 'cybersecurity', 'it-security', 'security' ),
-            'keywords' => array( 'cyber', 'security' ),
+            'aliases' => array( 'cyber-security', 'cybersecurity', 'it-security', 'security', 'security-services-and-risk-assessments', 'cloud-security', 'cloud-security-technology', 'risk-and-compiliance', 'information-security', 'security-posture' ),
+            'keywords' => array( 'cyber', 'security', 'risk assessment', 'information security', 'security posture', 'cloud security' ),
             'eyebrow' => __( 'Cybersecurity', 'q4-command' ),
             'title' => __( 'Cybersecurity services that help businesses prevent more, respond faster, and recover with less disruption.', 'q4-command' ),
             'intro' => __( 'Q4 GEMS helps organizations strengthen identity, endpoint, email, and cloud security with practical controls and remediation guidance.', 'q4-command' ),
@@ -280,8 +280,8 @@ function q4_command_page_library() {
             ),
         ),
         'microsoft-365' => array(
-            'aliases' => array( 'microsoft-365', 'office-365', 'microsoft-office-365' ),
-            'keywords' => array( 'microsoft 365', 'office 365' ),
+            'aliases' => array( 'microsoft-365', 'office-365', 'microsoft-office-365', 'microsoft-365-business-premium', 'google-workspace', 'email-and-collaboration' ),
+            'keywords' => array( 'microsoft 365', 'office 365', 'google workspace', 'email and collaboration' ),
             'eyebrow' => __( 'Microsoft 365', 'q4-command' ),
             'title' => __( 'Microsoft 365 services that improve collaboration without sacrificing control.', 'q4-command' ),
             'intro' => __( 'Q4 GEMS supports Microsoft 365 migration, administration, governance, and security so teams can collaborate with more confidence.', 'q4-command' ),
@@ -293,8 +293,8 @@ function q4_command_page_library() {
             ),
         ),
         'continuity' => array(
-            'aliases' => array( 'business-continuity', 'disaster-recovery', 'offsite-data-backup' ),
-            'keywords' => array( 'continuity', 'disaster recovery', 'backup' ),
+            'aliases' => array( 'business-continuity', 'disaster-recovery', 'offsite-data-backup', 'data-protection-services' ),
+            'keywords' => array( 'continuity', 'disaster recovery', 'backup', 'data protection' ),
             'eyebrow' => __( 'Business Continuity', 'q4-command' ),
             'title' => __( 'Backup, disaster recovery, and continuity planning that protect the business when systems fail.', 'q4-command' ),
             'intro' => __( 'Q4 GEMS helps organizations protect critical data, plan recovery, and keep essential operations available during outages or security incidents.', 'q4-command' ),
@@ -319,8 +319,8 @@ function q4_command_page_library() {
             ),
         ),
         'projects' => array(
-            'aliases' => array( 'project-management', 'it-consulting-advisory', 'digital-transformation' ),
-            'keywords' => array( 'project management', 'consulting', 'advisory', 'digital transformation' ),
+            'aliases' => array( 'project-management', 'it-consulting-advisory', 'digital-transformation', 'consulting', 'professional-services', 'go-to-cloud-strategy', 'operational-intelligence' ),
+            'keywords' => array( 'project management', 'consulting', 'advisory', 'digital transformation', 'professional services', 'cloud strategy', 'operational intelligence' ),
             'eyebrow' => __( 'Projects and Advisory', 'q4-command' ),
             'title' => __( 'Project delivery and IT advisory for upgrades, migrations, and business change.', 'q4-command' ),
             'intro' => __( 'Q4 GEMS supports migrations, rollouts, upgrades, and strategic initiatives with clearer planning, communication, and delivery discipline.', 'q4-command' ),

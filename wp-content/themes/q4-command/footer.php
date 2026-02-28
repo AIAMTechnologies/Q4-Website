@@ -1,4 +1,5 @@
     </main>
+    <?php $navigation = q4_command_get_navigation_groups(); ?>
     <footer class="site-footer">
         <section class="footer-cta panel-dark">
             <div>
@@ -35,6 +36,13 @@
                 </ul>
             </div>
         </div>
+
+        <?php if ( ! empty( $navigation['utility'] ) ) : ?>
+        <div class="footer-utility">
+            <p class="footer-utility-title"><?php esc_html_e( 'Quick links', 'q4-command' ); ?></p>
+            <?php q4_command_render_navigation_links( $navigation['utility'], 'footer-utility-links' ); ?>
+        </div>
+        <?php endif; ?>
 
         <div class="footer-meta">
             <p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php esc_html_e( 'Q4 GEMS. All rights reserved.', 'q4-command' ); ?></p>

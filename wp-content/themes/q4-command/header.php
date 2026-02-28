@@ -1,5 +1,6 @@
 <?php
-$home = q4_command_home_content();
+$home       = q4_command_home_content();
+$navigation = q4_command_get_navigation_groups();
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -24,16 +25,7 @@ $home = q4_command_home_content();
                 <span class="screen-reader-text"><?php esc_html_e( 'Toggle menu', 'q4-command' ); ?></span>
             </button>
             <nav class="primary-nav" id="primary-menu" data-menu-panel>
-                <?php
-                wp_nav_menu(
-                    array(
-                        'theme_location' => 'primary',
-                        'container'      => false,
-                        'menu_class'     => 'menu-list',
-                        'fallback_cb'    => 'q4_command_navigation_fallback',
-                    )
-                );
-                ?>
+                <?php q4_command_render_navigation_links( $navigation['primary'] ); ?>
                 <a class="button button--primary nav-cta" href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Book consultation', 'q4-command' ); ?></a>
             </nav>
         </div>

@@ -4,7 +4,7 @@
             <div>
                 <p class="section-kicker"><?php esc_html_e( 'Ready for a stronger IT foundation?', 'q4-command' ); ?></p>
                 <h2><?php esc_html_e( 'Build a more resilient, better-supported environment with Q4 GEMS.', 'q4-command' ); ?></h2>
-                <p><?php esc_html_e( 'Use the new site experience to guide visitors toward the right service faster, with clearer messaging and fewer distractions.', 'q4-command' ); ?></p>
+                <p><?php esc_html_e( 'Get managed IT services, cybersecurity guidance, Microsoft 365 support, and continuity planning aligned to the way your team actually operates.', 'q4-command' ); ?></p>
             </div>
             <div class="footer-cta-actions">
                 <a class="button button--primary" href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Talk to Q4 GEMS', 'q4-command' ); ?></a>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="footer-meta">
-            <p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php esc_html_e( 'Q4 GEMS. Custom WordPress theme redesign.', 'q4-command' ); ?></p>
+            <p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php esc_html_e( 'Q4 GEMS. All rights reserved.', 'q4-command' ); ?></p>
         </div>
     </footer>
 </div>

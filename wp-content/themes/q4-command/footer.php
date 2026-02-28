@@ -32,7 +32,7 @@
                 <ul>
                     <li><?php esc_html_e( 'Toronto and the GTA', 'q4-command' ); ?></li>
                     <li><?php esc_html_e( 'Remote and hybrid teams', 'q4-command' ); ?></li>
-                    <li><?php esc_html_e( 'Security-conscious SMBs', 'q4-command' ); ?></li>
+                    <li><?php esc_html_e( 'Security-conscious SMB\'s', 'q4-command' ); ?></li>
                 </ul>
             </div>
         </div>

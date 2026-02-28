@@ -99,33 +99,31 @@ function q4_command_disable_elementor_theme_builder_templates() {
 }
 add_action( 'wp', 'q4_command_disable_elementor_theme_builder_templates', 100 );
 
-function q4_command_brand_markup() {
-    $logo = get_custom_logo();
-
-    if ( $logo ) {
-        return $logo;
-    }
-
-    $brand_url = content_url( '/uploads/2023/03/desktoplogo.webp' );
+function q4_command_brand_markup( $variant = 'dark' ) {
+    $brand_url = 'light' === $variant
+        ? content_url( '/uploads/2023/03/desktoplogo.webp' )
+        : content_url( '/uploads/2023/03/q4g-white.png' );
 
     return sprintf(
-        '<a class="brand-mark" href="%1$s" aria-label="%2$s"><img src="%3$s" alt="%2$s" /></a>',
+        '<a class="brand-mark brand-mark--%4$s" href="%1$s" aria-label="%2$s"><img src="%3$s" alt="%2$s" /></a>',
         esc_url( home_url( '/' ) ),
         esc_attr__( 'Q4 GEMS', 'q4-command' ),
-        esc_url( $brand_url )
+        esc_url( $brand_url ),
+        esc_attr( $variant )
     );
 }
 
-function q4_command_build_nav_link( $label, $url, $is_current = false ) {
+function q4_command_build_nav_link( $label, $url, $is_current = false, $children = array() ) {
     return array(
         'label'      => $label,
         'url'        => $url,
         'is_current' => (bool) $is_current,
+        'children'   => is_array( $children ) ? $children : array(),
     );
 }
 
 function q4_command_utility_nav_targets() {
-    return array( 'blog', 'careers', 'faq', 'managed-services', 'privacy-policy' );
+    return array( 'blog', 'careers', 'faq', 'privacy-policy' );
 }
 
 function q4_command_is_utility_nav_item( $item ) {
@@ -157,7 +155,7 @@ function q4_command_is_utility_nav_item( $item ) {
 }
 
 function q4_command_default_navigation_groups() {
-    $privacy_url = function_exists( 'get_privacy_policy_url' ) ? get_privacy_policy_url() : home_url( '/privacy-policy/' );
+    $privacy_url = function_exists( 'get_privacy_policy_url' ) && get_privacy_policy_url() ? get_privacy_policy_url() : home_url( '/privacy-policy/' );
 
     return array(
         'primary' => array(
@@ -176,6 +174,27 @@ function q4_command_default_navigation_groups() {
     );
 }
 
+function q4_command_build_navigation_branch( $item, $items_by_parent ) {
+    $item_id   = (int) $item->ID;
+    $children  = array();
+    $child_set = isset( $items_by_parent[ $item_id ] ) ? $items_by_parent[ $item_id ] : array();
+
+    foreach ( $child_set as $child ) {
+        if ( q4_command_is_utility_nav_item( $child ) ) {
+            continue;
+        }
+
+        $children[] = q4_command_build_navigation_branch( $child, $items_by_parent );
+    }
+
+    return q4_command_build_nav_link(
+        $item->title,
+        $item->url,
+        ! empty( $item->current ) || ! empty( $item->current_item_ancestor ) || ! empty( $item->current_item_parent ),
+        $children
+    );
+}
+
 function q4_command_get_navigation_groups() {
     $groups    = array(
         'primary' => array(),
@@ -188,16 +207,22 @@ function q4_command_get_navigation_groups() {
         $items = wp_get_nav_menu_items( $locations['primary'] );
 
         if ( ! empty( $items ) ) {
+            $items_by_parent = array();
+
             foreach ( $items as $item ) {
-                if ( (int) $item->menu_item_parent !== 0 ) {
-                    continue;
+                $parent = (int) $item->menu_item_parent;
+
+                if ( ! isset( $items_by_parent[ $parent ] ) ) {
+                    $items_by_parent[ $parent ] = array();
                 }
 
-                $link = q4_command_build_nav_link(
-                    $item->title,
-                    $item->url,
-                    ! empty( $item->current ) || ! empty( $item->current_item_ancestor ) || ! empty( $item->current_item_parent )
-                );
+                $items_by_parent[ $parent ][] = $item;
+            }
+
+            $top_level_items = isset( $items_by_parent[0] ) ? $items_by_parent[0] : array();
+
+            foreach ( $top_level_items as $item ) {
+                $link = q4_command_build_navigation_branch( $item, $items_by_parent );
 
                 if ( q4_command_is_utility_nav_item( $item ) ) {
                     $groups['utility'][] = $link;
@@ -213,9 +238,7 @@ function q4_command_get_navigation_groups() {
         $groups['primary'] = $defaults['primary'];
     }
 
-    if ( empty( $groups['utility'] ) ) {
-        $groups['utility'] = $defaults['utility'];
-    }
+    $groups['utility'] = $defaults['utility'];
 
     return $groups;
 }
@@ -228,14 +251,33 @@ function q4_command_render_navigation_links( $items, $list_class = 'menu-list' )
     printf( '<ul class="%s">', esc_attr( $list_class ) );
 
     foreach ( $items as $item ) {
-        $classes = ! empty( $item['is_current'] ) ? ' class="current-menu-item"' : '';
+        $classes = array();
+
+        if ( ! empty( $item['is_current'] ) ) {
+            $classes[] = 'current-menu-item';
+        }
+
+        if ( ! empty( $item['children'] ) ) {
+            $classes[] = 'menu-item-has-children';
+        }
+
+        if ( empty( $classes ) ) {
+            echo '<li>';
+        } else {
+            printf( '<li class="%s">', esc_attr( implode( ' ', $classes ) ) );
+        }
 
         printf(
-            '<li%1$s><a href="%2$s">%3$s</a></li>',
-            $classes,
+            '<a href="%1$s"><span>%2$s</span></a>',
             esc_url( $item['url'] ),
             esc_html( $item['label'] )
         );
+
+        if ( ! empty( $item['children'] ) ) {
+            q4_command_render_navigation_links( $item['children'], 'sub-menu' );
+        }
+
+        echo '</li>';
     }
 
     echo '</ul>';

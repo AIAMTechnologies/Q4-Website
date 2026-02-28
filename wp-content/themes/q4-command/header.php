@@ -14,7 +14,7 @@ $navigation = q4_command_get_navigation_groups();
 <div class="site-shell">
     <header class="site-header" data-site-header>
         <div class="topline">
-            <p><?php esc_html_e( 'Security-first managed IT services, cybersecurity, and Microsoft 365 support for Toronto teams.', 'q4-command' ); ?></p>
+            <p><?php esc_html_e( 'Security-first managed IT services, cybersecurity, and Microsoft 365 support for SMB\'s.', 'q4-command' ); ?></p>
         </div>
         <div class="nav-wrap">
             <div class="brand"><?php echo q4_command_brand_markup(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>

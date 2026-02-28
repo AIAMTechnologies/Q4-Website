@@ -30,8 +30,8 @@ function q4_command_contact_points() {
 
 function q4_command_home_content() {
     return array(
-        'eyebrow' => __( 'Managed IT Services and Cybersecurity in Toronto', 'q4-command' ),
-        'title'   => __( 'Security-first IT support that helps Toronto teams move faster with fewer surprises.', 'q4-command' ),
+        'eyebrow' => __( 'Managed IT Services and Cybersecurity for SMB\'s', 'q4-command' ),
+        'title'   => __( 'Security-first IT support that helps SMB\'s move faster with fewer surprises.', 'q4-command' ),
         'intro'   => __( 'Q4 GEMS delivers managed IT services, cybersecurity, Microsoft 365 support, cloud guidance, and business continuity planning for organizations that need dependable technology and practical advice.', 'q4-command' ),
         'actions' => array(
             array(
@@ -217,8 +217,8 @@ function q4_command_home_content() {
                 'answer'   => __( 'Yes. Q4 GEMS supports Microsoft 365 setup, migrations, collaboration improvements, security configuration, and adoption guidance for teams that want better value from the platform.', 'q4-command' ),
             ),
             array(
-                'question' => __( 'Is Q4 GEMS focused on Toronto only?', 'q4-command' ),
-                'answer'   => __( 'Toronto and the GTA are core markets, while the service model also supports organizations that need reliable remote, cloud, and security-focused IT services more broadly.', 'q4-command' ),
+                'question' => __( 'Is Q4 GEMS focused on SMB\'s?', 'q4-command' ),
+                'answer'   => __( 'Q4 GEMS is built for SMB\'s that need reliable remote, cloud, and security-focused IT services, with delivery shaped around practical support, resilience, and growth.', 'q4-command' ),
             ),
         ),
     );
@@ -378,7 +378,7 @@ function q4_command_page_sections( $slug = '', $title = '' ) {
                 'overview'    => array(
                     'eyebrow' => __( 'Who we are', 'q4-command' ),
                     'title'   => __( 'Built for organizations that need more than basic IT support.', 'q4-command' ),
-                    'text'    => __( 'Q4 GEMS supports businesses across Toronto and the GTA with managed IT, cybersecurity, Microsoft 365, continuity planning, procurement, and project delivery. The focus is straightforward: keep systems dependable, reduce avoidable risk, and help leadership make better technology decisions.', 'q4-command' ),
+                    'text'    => __( 'Q4 GEMS supports SMB\'s with managed IT, cybersecurity, Microsoft 365, continuity planning, procurement, and project delivery. The focus is straightforward: keep systems dependable, reduce avoidable risk, and help leadership make better technology decisions.', 'q4-command' ),
                     'details' => array(
                         __( 'Tailored support models aligned to your environment, users, and priorities.', 'q4-command' ),
                         __( 'An operating style that values responsiveness, communication, and follow-through.', 'q4-command' ),
@@ -514,7 +514,7 @@ function q4_command_page_sections( $slug = '', $title = '' ) {
                     'details' => array(
                         __( 'Use the form for new service inquiries, project planning, or technology reviews.', 'q4-command' ),
                         __( 'Include your current setup, timeline, and biggest pain point for a faster response.', 'q4-command' ),
-                        __( 'Q4 GEMS supports organizations across Toronto, the GTA, and remote environments that need reliable day-to-day coverage.', 'q4-command' ),
+                        __( 'Q4 GEMS supports SMB\'s and remote environments that need reliable day-to-day coverage.', 'q4-command' ),
                     ),
                 ),
                 'contact_points' => q4_command_contact_points(),

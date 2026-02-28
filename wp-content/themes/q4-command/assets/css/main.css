@@ -1607,15 +1607,6 @@ a:hover {
 }
 
 
-/* Disable legacy Elementor theme-builder chrome so the custom theme controls header and footer. */
-.elementor-location-header,
-.elementor-location-footer,
-[data-elementor-type='header'],
-[data-elementor-type='footer'],
-.tobar {
-  display: none !important;
-}
-
 .detail-list,
 .contact-point-list {
   margin: 1.5rem 0 0;

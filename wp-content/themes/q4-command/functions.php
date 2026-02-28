@@ -58,6 +58,47 @@ function q4_command_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'q4_command_enqueue_assets' );
 
+
+function q4_command_remove_hooked_class_callbacks( $hook_name, $class_name ) {
+    global $wp_filter;
+
+    if ( empty( $wp_filter[ $hook_name ] ) || empty( $wp_filter[ $hook_name ]->callbacks ) ) {
+        return;
+    }
+
+    foreach ( $wp_filter[ $hook_name ]->callbacks as $priority => $callbacks ) {
+        foreach ( $callbacks as $callback ) {
+            if ( empty( $callback['function'] ) || ! is_array( $callback['function'] ) || ! is_object( $callback['function'][0] ) ) {
+                continue;
+            }
+
+            if ( ! is_a( $callback['function'][0], $class_name ) ) {
+                continue;
+            }
+
+            remove_action( $hook_name, $callback['function'], $priority );
+            remove_filter( $hook_name, $callback['function'], $priority );
+        }
+    }
+}
+
+function q4_command_disable_elementor_theme_builder_templates() {
+    if ( is_admin() ) {
+        return;
+    }
+
+    $theme_support_class = 'ElementorPro\Modules\ThemeBuilder\Classes\Theme_Support';
+
+    if ( ! class_exists( $theme_support_class ) ) {
+        return;
+    }
+
+    q4_command_remove_hooked_class_callbacks( 'get_header', $theme_support_class );
+    q4_command_remove_hooked_class_callbacks( 'get_footer', $theme_support_class );
+    q4_command_remove_hooked_class_callbacks( 'show_admin_bar', $theme_support_class );
+}
+add_action( 'wp', 'q4_command_disable_elementor_theme_builder_templates', 100 );
+
 function q4_command_brand_markup() {
     $logo = get_custom_logo();
 

@@ -9,7 +9,7 @@ $home = q4_command_home_content();
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
+<?php if ( function_exists( 'wp_body_open' ) ) { wp_body_open(); } ?>
 <div class="site-shell">
     <header class="site-header" data-site-header>
         <div class="topline">

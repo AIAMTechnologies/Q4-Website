@@ -1,5 +1,6 @@
 <?php
 $notice = q4_command_contact_notice();
+$args = isset( $GLOBALS['q4_command_contact_form_args'] ) && is_array( $GLOBALS['q4_command_contact_form_args'] ) ? $GLOBALS['q4_command_contact_form_args'] : array();
 $form_title = isset( $args['title'] ) ? $args['title'] : __( 'Request a consultation', 'q4-command' );
 $form_text  = isset( $args['text'] ) ? $args['text'] : __( 'Share your current challenge and Q4 GEMS can follow up with the right next step.', 'q4-command' );
 ?>

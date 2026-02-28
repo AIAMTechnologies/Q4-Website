@@ -2,6 +2,21 @@
 
 require_once get_template_directory() . '/inc/site-content.php';
 
+
+if ( ! function_exists( 'wp_body_open' ) ) {
+    function wp_body_open() {
+        do_action( 'wp_body_open' );
+    }
+}
+
+if ( ! function_exists( 'q4_command_render_contact_form' ) ) {
+    function q4_command_render_contact_form( $args = array() ) {
+        $GLOBALS['q4_command_contact_form_args'] = $args;
+        locate_template( array( 'template-parts/contact-form.php' ), true, false );
+        unset( $GLOBALS['q4_command_contact_form_args'] );
+    }
+}
+
 function q4_command_setup() {
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );

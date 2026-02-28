@@ -176,9 +176,7 @@ $home = q4_command_home_content();
 
 <section class="section section--contact-home">
     <?php
-    get_template_part(
-        'template-parts/contact-form',
-        null,
+    q4_command_render_contact_form(
         array(
             'title' => __( 'Request a strategy conversation', 'q4-command' ),
             'text'  => __( 'Tell Q4 GEMS where support, security, or Microsoft 365 is getting in the way and we will follow up with a practical next step.', 'q4-command' ),

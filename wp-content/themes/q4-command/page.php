@@ -147,9 +147,7 @@ if ( have_posts() ) :
         <?php if ( $is_contact ) : ?>
             <section class="section section--contact-page">
                 <?php
-                get_template_part(
-                    'template-parts/contact-form',
-                    null,
+                q4_command_render_contact_form(
                     array(
                         'title' => __( 'Request a consultation', 'q4-command' ),
                         'text'  => __( 'Tell us what you need help with and Q4 GEMS will follow up with the right next step.', 'q4-command' ),
@@ -160,9 +158,7 @@ if ( have_posts() ) :
         <?php elseif ( $is_custom_page && ! empty( $page_sections['cta'] ) ) : ?>
             <section class="section page-cta-shell">
                 <?php
-                get_template_part(
-                    'template-parts/contact-form',
-                    null,
+                q4_command_render_contact_form(
                     array(
                         'title' => $page_sections['cta']['title'],
                         'text'  => $page_sections['cta']['text'],

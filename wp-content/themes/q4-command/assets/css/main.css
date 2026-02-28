@@ -484,6 +484,13 @@ a:hover {
   letter-spacing: -0.05em;
 }
 
+.hero.panel-dark h1,
+.page-hero.panel-dark h1,
+.hero.panel-dark .hero-copy h1,
+.page-hero.panel-dark .page-hero-copy h1 {
+  color: #fff !important;
+}
+
 .section-heading,
 .split-copy {
   position: relative;
@@ -1029,8 +1036,7 @@ a:hover {
   padding: 4rem;
 }
 
-.card-grid--industries .industry-card,
-.card-grid--testimonials .testimonial-card {
+.card-grid--industries .industry-card {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: none;
@@ -1043,9 +1049,32 @@ a:hover {
   background: linear-gradient(90deg, var(--signal), rgba(9, 113, 176, 0.72));
 }
 
-.card-grid--industries .industry-card p,
-.card-grid--testimonials .testimonial-card cite {
+.card-grid--industries .industry-card p {
   color: rgba(255, 255, 255, 0.72);
+}
+
+.card-grid--testimonials .testimonial-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 245, 245, 0.92));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: none;
+  color: var(--ink);
+}
+
+.card-grid--testimonials .testimonial-card::before {
+  background: linear-gradient(90deg, var(--cobalt), rgba(9, 113, 176, 0.48));
+}
+
+.card-grid--testimonials .testimonial-card p {
+  color: var(--ink) !important;
+}
+
+.card-grid--testimonials .testimonial-card cite {
+  color: var(--ink-muted) !important;
+}
+
+.card-grid--testimonials .testimonial-card::after {
+  color: rgba(9, 113, 176, 0.18);
 }
 
 .testimonial-card {
